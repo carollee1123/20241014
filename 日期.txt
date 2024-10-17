@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int fun(int mon,int day)
+{
+	int sum=0;
+    for( int i=1 ; i<mon ; i++){
+        if(i==1 || i==3 || i==5 || i==7 || i==8 || i==10 || i==12){
+            sum += 31;
+        }
+        if(i==4 || i==6 || i==9 || i==11){
+            sum += 30;
+        }
+        if(i==2){sum += 29;}
+    }
+    sum += day;
+    return sum;
+}
+int main(void)
+{
+    int mon, day;
+    cout << "please enter month and day" << endl;
+    cin >> mon >> day;
+    fun(mon,day);
+    int sum = fun(mon,day);
+    cout << sum << endl;
+    return 0;
+}

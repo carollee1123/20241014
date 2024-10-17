@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+#include <algorithm> // 用於隨機打亂
+
+using namespace std;
+
+int generateNumber() {
+    srand(time(0)); // 設置隨機數種子
+
+    // 儲存五位數
+    vector<int> digits(5);
+
+    // 隨機生成一個數字，用來出現兩次
+    int repeatedDigit = rand() % 10;
+    digits[0] = repeatedDigit;
+    digits[1] = repeatedDigit;
+
+    // 為其餘三位數生成不同的數字，且與 repeatedDigit 不同
+    for (int i = 2; i < 5; i++) {
+        int newDigit;
+        do {
+            newDigit = rand() % 10; // 生成 [0,9] 之間的隨機數
+        } while (newDigit == repeatedDigit); // 確保不與 repeatedDigit 相同
+        digits[i] = newDigit;
+    }
+
+    // 將數字打亂順序
+    random_shuffle(digits.begin(), digits.end());
+
+    // 組合成五位數字
+    int finalNumber = 0;
+    for (int i = 0; i < 5; i++) {
+        finalNumber = finalNumber * 10 + digits[i];
+    }
+
+    return finalNumber;
+}
+
+int main() {
+    // 生成並輸出結果
+    int result = generateNumber();
+    cout << "The generated number is: " << result << endl;
+
+    return 0;
+}

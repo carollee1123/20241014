@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cstdlib> /* 亂數相關函數 */
+#include <ctime>   /* 時間相關函數 */
+using namespace std;
+
+int random()
+{
+
+    /* 指定亂數範圍 */
+    int min = 1;
+    int max = 6;
+
+    /* 產生 [min , max] 的整數亂數 */
+    int x = rand() % (max - min + 1) + min;//這部分使用模運算符 % 將隨機數的範圍限制在 0 到 (max - min) 之間。(max-min+1)會是[0,5],再加min會變[1,6]
+
+    return x;
+}
+int main(void)
+{
+    srand( time(NULL) );//一剛開始用即可，用在函式內會不隨機
+    random();
+    cout << random() << endl;
+    return 0;
+}
